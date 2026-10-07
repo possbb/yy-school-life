@@ -68,7 +68,7 @@ for(const [from,to,title,description,url] of localCelebrations){
 }
 const calendarKinds=['假期　<span class="legend-school-break">● 学校假期</span>　<span class="legend-official">● 法定节假日</span>','活动与节庆　<span class="legend-school-activity">● 学校活动</span>　<span class="legend-local">● 巴塞罗那本地节庆</span>'];
 // Keep source names in the detail view, with compact Chinese labels on the axis.
-function calendarTitle(e){return e[3].replace(/ · (Halloween|Castanyada|Nochevieja|Sant Jordi)$/, '');}
+function calendarTitle(e){return e[3].replace(/ · (Halloween|Castanyada|Nochevieja|Sant Jordi|Can Mas)$/, '').replace(/^La Capella /, '');}
 function calendarIcon(e){
  const key=e[2]===6&&e[0]==='2026-10-26'?'chestnut':e[3].includes('Halloween')?'pumpkin':e[0]==='2026-12-24'?'tree':e[3].includes('Sant Jordi')?'book':null;
  if(key){
