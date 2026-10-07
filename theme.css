@@ -1,67 +1,67 @@
 /* Simplified notebook theme shared by all school pages. Layout stays in style.css. */
 :root{
- --navy:#425e48;--ink:#30392f;--muted:#697263;--line:#e5e1d5;
- --blue:#edf1ed;--green:#eaf1e4;--yellow:#faf0d5;--purple:#f2e9ed;
- --sage:#607c60;--paper:#faf8f2;--official:#ca922d;--school-break:#ce8399;
+ --navy:#2d3e60;--ink:#303744;--muted:#6a7080;--line:#e5e1d5;
+ --blue:#edf0f6;--green:#eaf1e4;--yellow:#faf0d5;--purple:#f2e9ed;
+ --accent:#2d3e60;--paper:#faf8f2;--official:#ca922d;--school-break:#ce8399;
  --school-activity:#51856a;--local:#5787ac;
 }
 body{background:var(--paper);font-family:'Microsoft YaHei','PingFang SC',system-ui,sans-serif}
 header{background:#fffdf8;border-color:var(--line)}
-.brand{color:#364d3c}.mark{background:var(--sage);color:#fff4d5;border-radius:13px}
-.brand small,.eyebrow{color:#79816f}.eyebrow{letter-spacing:1px}
-nav a{border:1px solid transparent}nav a[aria-current]{background:var(--sage);color:#fffdf5}
-nav a:hover{background:#edf1e6;color:var(--navy);text-decoration:none}
+.brand{color:#2d3e60}.mark{background:var(--accent);color:#fff4d5;border-radius:13px}
+.brand small,.eyebrow{color:#717b8b}.eyebrow{letter-spacing:1px}
+nav a{border:1px solid transparent}nav a[aria-current]{background:var(--accent);color:#fffdf5}
+nav a:hover{background:#edf0f6;color:var(--navy);text-decoration:none}
 .panel{background:#fffdf9;border-color:var(--line);box-shadow:0 2px 7px #4a563805}
-h1,h2,h3{letter-spacing:0}h1{color:#344b38}
+h1,h2,h3{letter-spacing:0}h1{color:#2d3e60}
 .label{background:#f6edd1;color:#71613f}.sectionhead{border-color:var(--line)}
-.days button,.timeline-controls button{background:#fffdf9;border-color:#dbdfd2;border-radius:10px}
-.days button[aria-pressed=true],.timeline-controls button[aria-pressed=true]{background:var(--sage);border-color:var(--sage);color:white}
-.days button[aria-pressed=true] small{color:#f3f4e8}
+.days button,.timeline-controls button{background:#fffdf9;border-color:#d9dde5;border-radius:10px}
+.days button[aria-pressed=true],.timeline-controls button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:white}
+.days button[aria-pressed=true] small{color:#e5eaf3}
 button:hover,.download:hover{box-shadow:0 3px 9px #56633c12}
 a:focus-visible,button:focus-visible,summary:focus-visible,.timeline-controls button:focus-visible{outline:3px solid #ab8336;outline-offset:3px}
-.lesson{border-radius:10px}.gray{background:#f1f1e9}.point{background:#edf0e5;color:#496247}
+.lesson{border-radius:10px}.gray{background:#f1f1e9}.point{background:#edf0f5;color:#405477}
 .activity{border-color:#efebe1}.notice{background:#faf2dc;border-color:#d3aa57}
-.empty,.download,.fact{background:#f4f4ea}.download{border-color:var(--line)}
-.week-scroll{border-color:var(--line)}.week-table thead th{background:#dce5ce;color:#345239}
-.week-table thead th small{color:#52694c}.week-table tbody th{background:#f2f3e9;color:#57664d}
-.daily-week-table th.day-time{background:#eaf0df}.week-pause td{background:#f8f6ed;color:var(--muted)}
+.empty,.download,.fact{background:#f4f3ee}.download{border-color:var(--line)}
+.week-scroll{border-color:var(--line)}.week-table thead th{background:#2d3e60;color:#fffdf8}
+.week-table thead th small{color:#e1e7f1}.week-table tbody th{background:#f2f2ed;color:#60697a}
+.daily-week-table th.day-time{background:#edf0f5}.week-pause td{background:#f8f6ed;color:var(--muted)}
 .week-table th,.week-table td{border-color:#fffdf8}.week-table caption{background:#f5f3e9}
-.week-extras td,.appendix-table th{background:#eef2e5}.appendix-table td{border-color:var(--line)}
+.week-extras td,.appendix-table th{background:#edf0f5}.appendix-table td{border-color:var(--line)}
 .publication-card{background:#fffdf9;border-color:var(--line);border-radius:13px}
-.publication-cover{background:#f0f0e4}.cover-language{background:var(--sage);color:white}
+.publication-cover{background:#f1efe7}.cover-language{background:var(--accent);color:white}
 .publication-card:hover{box-shadow:0 8px 20px #55613b15}.publication-caption h3{color:var(--ink)}
 .timeline-scroll{border-color:var(--line);background:var(--paper);border-radius:12px}
-.timeline-months{background:#dce5ce;color:#35563c}
-.timeline-months>div{border-color:#c3d1b6;font-weight:650}
+.timeline-months{background:#2d3e60;color:#fffdf8}
+.timeline-months>div{border-color:#526080;font-weight:650}
 .timeline-lane{background-color:#faf8f2;border-color:var(--line)}
-.lane-title{background:#fffdf9;color:#394b36;width:100%}
+.lane-title{background:#fffdf9;color:#2d3e60;width:100%}
 .legend-school-break{color:#a85a76}.legend-official{color:#966817}
 .legend-school-activity{color:#417456}.legend-local{color:#426f95}
 .timeline-event{border-radius:6px;font-family:inherit}
 .timeline-event.lane-0{background:var(--official)}.timeline-event.lane-1{background:var(--school-break)}
 .timeline-event.lane-2{background:var(--school-activity)}.timeline-event.lane-3{background:var(--local)}
-.event-label{background:#fffefb;border:1px solid #e8e2d6;border-radius:10px;padding:6px 8px;color:#333c31;font-family:inherit;font-size:14px;line-height:1.4;box-shadow:0 3px 7px #5f553b09}
-.event-label small{font-size:12px;color:#707667;margin-top:4px}
-.timeline-event:hover .event-label{border-color:#9dae8e;box-shadow:0 4px 10px #4b63391a}
+.event-label{background:#fffefb;border:1px solid #e8e2d6;border-radius:10px;padding:6px 8px;color:#303744;font-family:inherit;font-size:14px;line-height:1.4;box-shadow:0 3px 7px #5f553b09}
+.event-label small{font-size:12px;color:#6a7080;margin-top:4px}
+.timeline-event:hover .event-label{border-color:#8e9bb3;box-shadow:0 4px 10px #4b63391a}
 .timeline-event:focus-visible .event-label{outline:3px solid #ab8336}
 .calendar-icon{float:right;width:24px;height:24px;margin:0 0 2px 4px;pointer-events:none}
 .calendar-icon svg{display:block;width:100%;height:100%;overflow:hidden}
 .calendar-icon .culture-art>rect{fill:none}
-.event-detail,.agenda-detail{background:#f1f3e9;border:1px solid #e2e7d7;border-radius:12px;color:var(--ink)}
+.event-detail,.agenda-detail{background:#f1f2f5;border:1px solid #e0e3e9;border-radius:12px;color:var(--ink)}
 .culture-grid section{background:#fffdf9;border-color:var(--line)}
-.culture-tags span{background:#fffdf9;border-color:var(--line);color:#526545}
-.culture-evidence{border-color:#dce2cf}.culture-hero{gap:20px}
-.culture-guide h4{color:#3d553e}.culture-art>rect{fill:#f6f1e6}
+.culture-tags span{background:#fffdf9;border-color:var(--line);color:#4d5e7b}
+.culture-evidence{border-color:#dfe3e9}.culture-hero{gap:20px}
+.culture-guide h4{color:#2d3e60}.culture-art>rect{fill:#f6f1e6}
 footer{border-color:var(--line)}
 @media(max-width:760px){
- nav a{background:#f0f2e8}.mobile-shortcuts a{background:#fffdf9;border-color:var(--line);border-radius:10px}
- #mobile-school-day .lunch-period{background:#f2f3e8}.agenda-month>h3{color:#4a6444}
+ nav a{background:#f0f1f4}.mobile-shortcuts a{background:#fffdf9;border-color:var(--line);border-radius:10px}
+ #mobile-school-day .lunch-period{background:#f4f3ed}.agenda-month>h3{color:#2d3e60}
  .agenda-card{background:#fffdf9;border-color:var(--line);border-left-color:var(--event-color);border-radius:12px;box-shadow:0 2px 5px #5a603407}
  .agenda-card.kind-0{--event-color:#ae7e22}.agenda-card.kind-1{--event-color:#ad627d}
  .agenda-card.kind-2{--event-color:#4d7c5d}.agenda-card.kind-3{--event-color:#527e9e}
- .agenda-trigger{background:#fffdf9}.agenda-trigger[aria-expanded=true]{background:#edf2e4}
- .agenda-detail{border:0;border-top:1px solid var(--line);border-radius:0;background:#f5f5eb}
- .agenda-title .calendar-icon{width:22px;height:22px}.agenda-date{color:#4b5842}
- .publication-cover{background:#eeefdf}
+ .agenda-trigger{background:#fffdf9}.agenda-trigger[aria-expanded=true]{background:#eef1f7}
+ .agenda-detail{border:0;border-top:1px solid var(--line);border-radius:0;background:#f5f4ef}
+ .agenda-title .calendar-icon{width:22px;height:22px}.agenda-date{color:#405477}
+ .publication-cover{background:#f1efe6}
 }
 @media(prefers-reduced-motion:reduce){.publication-card{transition:none}}
