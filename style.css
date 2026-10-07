@@ -40,3 +40,21 @@ body[data-page="timeline"] .week-note{margin-top:10px}
 #daily-view-content .lesson small,#daily-view-content .activity small{display:inline}
 
 .timeline-controls button[aria-pressed="true"]{background:var(--navy);color:white;border-color:var(--navy)}
+
+.culture-guide{font-size:15px;line-height:1.8}
+.culture-guide>h3{font-size:22px;line-height:1.45}
+.culture-date{font-size:14px;color:var(--muted)}
+.culture-hero{display:grid;grid-template-columns:210px minmax(0,1fr);gap:24px;align-items:center;margin:18px 0 22px}
+.culture-art{display:block;width:100%;height:auto}
+.culture-guide h4{font-size:18px;margin:0 0 9px;line-height:1.5}
+.culture-guide h4 small{display:block;font-size:12px;font-weight:400;margin-top:2px;letter-spacing:.4px}
+.culture-hero h4{font-size:23px}.culture-hero p{color:var(--muted)}
+.culture-tags{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}
+.culture-tags span{background:white;border:1px solid var(--line);border-radius:6px;padding:3px 9px;font-size:12px}
+.culture-hero small{font-size:11px;color:var(--muted)}
+.culture-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.culture-grid section{background:white;border:1px solid var(--line);border-radius:12px;padding:20px;min-width:0}
+.culture-grid p{margin:10px 0 0}
+.culture-evidence{margin:20px 0 0;border-top:1px solid var(--line);padding-top:14px;font-size:13px}
+.culture-evidence li{margin:7px 0}.culture-evidence a{overflow-wrap:anywhere}
+@media(max-width:760px){.culture-hero{grid-template-columns:100px minmax(0,1fr);gap:12px;margin:12px 0}.culture-hero h4{font-size:18px}.culture-guide>h3{font-size:20px}.culture-grid{grid-template-columns:1fr;gap:10px}.culture-grid section{padding:15px}.culture-guide{font-size:14px}.culture-tags{gap:4px}.culture-tags span{padding:2px 5px}.event-detail{padding:13px}}

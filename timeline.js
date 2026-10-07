@@ -73,6 +73,7 @@ const start=ts('2026-10-07'),end=ts('2027-07-31');
 const totalDays=Math.round((end-start)/dayMs)+1;
 let viewDays=totalDays;
 let dailyViewOpen=false;
+let selectedTimelineEvent=null;
 let viewStart=Math.max(start,Math.min(ts(today),end-(viewDays-1)*dayMs));
 function renderTimeline(){
  const count=Math.round((end-start)/dayMs)+1;
@@ -89,7 +90,7 @@ function renderTimeline(){
   let occupied=[];const items=visible.filter(e=>l===0?e[2]===0:l===1?e[2]>=1&&e[2]<=3:l===2?e[2]===6:e[2]===7).map(e=>{const x=(Math.max(ts(e[0]),start)-start)/dayMs*scale;const duration=(Math.min(ts(e[1]),end)-Math.max(ts(e[0]),start))/dayMs+1;let row=occupied.findIndex(v=>v<=x);if(row<0)row=occupied.length;occupied[row]=x+Math.max(duration*scale,160)+14;return `<button class="timeline-event lane-${l}" style="left:${x}px;top:${row*85+12}px;width:${Math.max(duration*scale,8)}px" data-event="${timelineEvents.indexOf(e)}"><span class="event-label"><strong>${e[3]}</strong><small>${e[0]===e[1]?e[0]:e[0]+' 至 '+e[1]}</small></span></button>`;}).join('');
   return `<div class="timeline-lane" style="height:${Math.max(occupied.length,1)*85+20}px"><div class="lane-title">${name}</div>${items||'<span class="lane-empty">所选日期内没有已提供的记录</span>'}</div>`;
  }).join('');
- document.querySelector('main').innerHTML=`<div class="intro"><div><div class="eyebrow">1.º DE PRIMARIA · CRONOLOGÍA</div><h1>一年级时间轴</h1><p class="muted">日常上学、午餐、假期与学校活动 · 年度时间轴不含课外班</p></div></div><section class="panel"><h2>上学日的一天</h2>${dailyTimetable()}<div class="timeline-controls"><button type="button" id="toggle-daily-view" aria-expanded="${dailyViewOpen}" aria-controls="daily-view-content">${dailyViewOpen?'收起':'展开'}按天查看 · 课程与课外活动</button></div><div id="daily-view-content" ${dailyViewOpen?'':'hidden'}></div></section><section class="panel annual"><div class="sectionhead"><div><h2>一年总览</h2><p>2026年10月7日至2027年7月31日。默认显示整个学年；可切换到从今天起约3个月的视窗。</p></div></div><div class="timeline-controls" aria-label="时间轴范围"><button id="full-year" aria-pressed="${viewDays===totalDays}">整个学年</button><button id="near-months" aria-pressed="${viewDays!==totalDays}">近3个月</button></div><div class="timeline-scroll" tabindex="0" role="region" aria-label="一年级年度横向时间轴"><div class="timeline-canvas" style="width:${width}px"><div class="timeline-months">${months}</div>${content}</div></div><div class="event-detail" id="event-detail" aria-live="polite">点击时间轴上的日期事件，查看具体安排和来源。</div></section>`;
+ document.querySelector('main').innerHTML=`<div class="intro"><div><div class="eyebrow">1.º DE PRIMARIA · CRONOLOGÍA</div><h1>一年级时间轴</h1><p class="muted">日常上学、午餐、假期与学校活动 · 年度时间轴不含课外班</p></div></div><section class="panel"><h2>上学日的一天</h2>${dailyTimetable()}<div class="timeline-controls"><button type="button" id="toggle-daily-view" aria-expanded="${dailyViewOpen}" aria-controls="daily-view-content">${dailyViewOpen?'收起':'展开'}按天查看 · 课程与课外活动</button></div><div id="daily-view-content" ${dailyViewOpen?'':'hidden'}></div></section><section class="panel annual"><div class="sectionhead"><div><h2>一年总览</h2><p>2026年10月7日至2027年7月31日。默认显示整个学年；可切换到从今天起约3个月的视窗。</p></div></div><div class="timeline-controls" aria-label="时间轴范围"><button id="full-year" aria-pressed="${viewDays===totalDays}">整个学年</button><button id="near-months" aria-pressed="${viewDays!==totalDays}">近3个月</button></div><div class="timeline-scroll" tabindex="0" role="region" aria-label="一年级年度横向时间轴"><div class="timeline-canvas" style="width:${width}px"><div class="timeline-months">${months}</div>${content}</div></div><div class="event-detail" id="event-detail" aria-live="polite">${selectedTimelineEvent===null?'点击时间轴上的日期事件，查看由来、习俗、食物和活动安排。':renderCultureDetail(timelineEvents[selectedTimelineEvent])}</div></section>`;
  const dailyContent=document.getElementById('daily-view-content');
  function renderDayView(){
   dailyContent.innerHTML=dayView();
@@ -130,7 +131,10 @@ function renderTimeline(){
  }
  document.getElementById('near-months').onclick=()=>zoom(92,true,'near-months');
  document.getElementById('full-year').onclick=()=>zoom(totalDays,false,'full-year');
- document.querySelectorAll('[data-event]').forEach(b=>b.onclick=()=>{const e=timelineEvents[Number(b.dataset.event)];document.querySelector('#event-detail').innerHTML=`<h3>${e[3]}</h3><p>${e[0]===e[1]?e[0]:e[0]+' 至 '+e[1]}</p><p>${e[4]}</p><small>来源：${e[6]?`<a href="${e[6][0]}" target="_blank" rel="noopener">${e[6][1]}</a>`:`学校入学说明，原件第${e[5]}页`}。${ts(e[1])<ts(today)?'此项日期已过，保留作历史记录。':''}</small>`;});
+ document.querySelectorAll('[data-event]').forEach(b=>b.onclick=()=>{
+  selectedTimelineEvent=Number(b.dataset.event);
+  document.querySelector('#event-detail').innerHTML=renderCultureDetail(timelineEvents[selectedTimelineEvent]);
+ });
  document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>{
   const event=document.querySelector(`[data-event="${b.dataset.jump}"]`);
   event.click();event.scrollIntoView({behavior:'smooth',block:'center',inline:'center'});event.focus({preventScroll:true});
