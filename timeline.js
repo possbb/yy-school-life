@@ -66,7 +66,18 @@ const localCelebrations=[
 for(const [from,to,title,description,url] of localCelebrations){
  timelineEvents.push([from,to,7,title,description+' 仅作本地节庆提醒，不表示学校放假或已报名；来源用于核对传统日期，往年场次不套用于本学年。',null,[url,'官方节庆与传统介绍']]);
 }
-const calendarKinds=['假期 · Vacaciones　<span style="color:#9b5074">● 学校假期</span>　<span style="color:#bc7820">● 法定节假日</span>','活动与节庆 · Actividades y fiestas　<span style="color:#337967">● 学校活动</span>　<span style="color:#386991">● 巴塞罗那本地节庆</span>'];
+const calendarKinds=['假期　<span class="legend-school-break">● 学校假期</span>　<span class="legend-official">● 法定节假日</span>','活动与节庆　<span class="legend-school-activity">● 学校活动</span>　<span class="legend-local">● 巴塞罗那本地节庆</span>'];
+// Keep source names in the detail view, with compact Chinese labels on the axis.
+function calendarTitle(e){return e[3].replace(/ · (Halloween|Castanyada|Nochevieja|Sant Jordi)$/, '');}
+function calendarIcon(e){
+ const key=e[2]===6&&e[0]==='2026-10-26'?'chestnut':e[3].includes('Halloween')?'pumpkin':e[0]==='2026-12-24'?'tree':e[3].includes('Sant Jordi')?'book':null;
+ if(key){
+  const crop={chestnut:'32 35 110 125',pumpkin:'60 20 170 145',tree:'58 12 165 160',book:'179 27 66 135'};
+  return `<span class="calendar-icon" aria-hidden="true">${cultureIllustration(key).replace('0 0 280 190',crop[key])}</span>`;
+ }
+ if(e[2]===6&&e[0]==='2026-10-20')return '<span class="calendar-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="17" r="12" fill="#fdfbf6" stroke="#71899b" stroke-width="2"/><circle cx="16" cy="3" r="2" fill="none" stroke="#71899b"/><path d="M22 10L18 19L10 24L14 15Z" fill="#86a496"/><path d="M22 10L18 19L14 15Z" fill="#cfa4a1"/><circle cx="16" cy="17" r="1.5" fill="#496354"/></svg></span>';
+ return '';
+}
 const dayMs=86400000;
 const ts=s=>Date.parse(s+'T00:00:00Z');
 const iso=n=>new Date(n).toISOString().slice(0,10);
@@ -89,7 +100,7 @@ function renderTimeline(){
  ).sort((a,b)=>a[0].localeCompare(b[0]));
  let months='';for(let d=new Date(start);d.getTime()<=end;){let next=Date.UTC(d.getUTCFullYear(),d.getUTCMonth()+1,1);const stop=Math.min(next,end+dayMs);months+=`<div style="width:${(stop-d.getTime())/dayMs*scale}px">${String(d.getUTCFullYear()).slice(-2)}/${d.getUTCMonth()+1}</div>`;d=new Date(next);}
  const content=lanes.map((name,l)=>{
-  let occupied=[];const items=visible.filter(e=>l===0?e[2]<4:e[2]===6||e[2]===7).map(e=>{const kind=e[2]===0?0:e[2]<=3?1:e[2]===6?2:3;const x=(Math.max(ts(e[0]),start)-start)/dayMs*scale;const duration=(Math.min(ts(e[1]),end)-Math.max(ts(e[0]),start))/dayMs+1;let row=occupied.findIndex(v=>v<=x);if(row<0)row=occupied.length;occupied[row]=x+Math.max(duration*scale,160)+14;return `<button class="timeline-event lane-${kind}" style="left:${x}px;top:${row*85+12}px;width:${Math.max(duration*scale,8)}px" data-event="${timelineEvents.indexOf(e)}"><span class="event-label"><strong>${e[3]}</strong><small>${e[0]===e[1]?e[0]:e[0]+' 至 '+e[1]}</small></span></button>`;}).join('');
+  let occupied=[];const items=visible.filter(e=>l===0?e[2]<4:e[2]===6||e[2]===7).map(e=>{const kind=e[2]===0?0:e[2]<=3?1:e[2]===6?2:3;const x=(Math.max(ts(e[0]),start)-start)/dayMs*scale;const duration=(Math.min(ts(e[1]),end)-Math.max(ts(e[0]),start))/dayMs+1;const labelX=Math.min(x,width-166);let row=occupied.findIndex(v=>v<=labelX);if(row<0)row=occupied.length;occupied[row]=labelX+Math.max(duration*scale,160)+14;return `<button class="timeline-event lane-${kind}" style="left:${x}px;top:${row*85+12}px;width:${Math.max(duration*scale,8)}px" data-event="${timelineEvents.indexOf(e)}"><span class="event-label">${calendarIcon(e)}<strong>${calendarTitle(e)}</strong><small>${e[0]===e[1]?e[0]:e[0]+' 至 '+e[1]}</small></span></button>`;}).join('');
   return `<div class="timeline-lane" style="height:${Math.max(occupied.length,1)*85+20}px"><div class="lane-title">${name}</div>${items||'<span class="lane-empty">所选日期内没有已提供的记录</span>'}</div>`;
  }).join('');
  document.querySelector('main').innerHTML=`<div class="intro"><div><div class="eyebrow">1.º DE PRIMARIA · CRONOLOGÍA</div><h1>一年级时间轴</h1><p class="muted">日常上学、午餐、假期与学校活动 · 年度时间轴不含课外班</p></div></div><div class="mobile-only mobile-shortcuts"><a href="#school-day">当天课程</a><a href="#annual-calendar">年度日程 ↓</a></div><section class="panel" id="school-day"><h2>上学日的一天</h2><div id="mobile-school-day" class="mobile-only"></div><div class="desktop-school-day">${dailyTimetable()}<div class="timeline-controls"><button type="button" id="toggle-daily-view" aria-expanded="${dailyViewOpen}" aria-controls="daily-view-content">${dailyViewOpen?'收起':'展开'}按天查看 · 课程与课外活动</button></div><div id="daily-view-content" ${dailyViewOpen?'':'hidden'}></div></div></section><section class="panel annual" id="annual-calendar"><div class="sectionhead"><div><h2>一年总览</h2><p>2026年10月7日至2027年7月31日。默认显示整个学年；可切换到从今天起约3个月的视窗。</p></div></div><div class="timeline-controls" aria-label="时间轴范围"><button id="full-year" aria-pressed="${viewDays===totalDays}">整个学年</button><button id="near-months" aria-pressed="${viewDays!==totalDays}">近3个月</button></div><div class="mobile-only" id="mobile-agenda">${mobileAgenda(visible)}</div><div class="timeline-scroll" tabindex="0" role="region" aria-label="一年级年度横向时间轴"><div class="timeline-canvas" style="width:${width}px"><div class="timeline-months">${months}</div>${content}</div></div><div class="event-detail" id="event-detail" aria-live="polite">${selectedTimelineEvent===null?'点击时间轴上的日期事件，查看由来、习俗、食物和活动安排。':renderCultureDetail(timelineEvents[selectedTimelineEvent])}</div></section>`;
@@ -120,7 +131,19 @@ function renderTimeline(){
  // The small border-width difference is applied consistently to all date positions.
  const ratio=actualScale/scale;
  document.querySelectorAll('.timeline-months>div').forEach(el=>el.style.width=`${parseFloat(el.style.width)*ratio}px`);
- document.querySelectorAll('[data-event]').forEach(el=>{el.style.left=`${parseFloat(el.style.left)*ratio}px`;el.style.width=`${Math.max(8,parseFloat(el.style.width)*ratio)}px`;});
+ document.querySelectorAll('[data-event]').forEach(el=>{
+  const left=parseFloat(el.style.left)*ratio;
+  el.style.left=`${left}px`;el.style.width=`${Math.max(8,parseFloat(el.style.width)*ratio)}px`;
+  const label=el.querySelector('.event-label');
+  label.style.left=`${Math.min(0,count*actualScale-left-label.offsetWidth-6)}px`;
+ });
+ // Month guide lines use the same exact date scale as the month ruler.
+ let monthOffset=0;
+ const guides=[...document.querySelectorAll('.timeline-months>div')].slice(0,-1).map(el=>{
+  monthOffset+=parseFloat(el.style.width);
+  return `linear-gradient(to right,transparent ${monthOffset-.5}px,#eae5d9 ${monthOffset-.5}px,#eae5d9 ${monthOffset+.5}px,transparent ${monthOffset+.5}px)`;
+ }).join(',');
+ document.querySelectorAll('.timeline-lane').forEach(el=>el.style.backgroundImage=guides);
  function updateWindow(){
   viewStart=Math.max(start,Math.min(end-(viewDays-1)*dayMs,start+Math.round(scroller.scrollLeft/actualScale)*dayMs));
  }

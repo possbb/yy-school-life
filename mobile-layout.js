@@ -14,7 +14,7 @@ function mobileAgenda(events){
   const id=timelineEvents.indexOf(e),kind=e[2]===0?0:e[2]<=3?1:e[2]===6?2:3;
   const date=s=>`${Number(s.slice(5,7))}/${Number(s.slice(8))}`;
   const open=selectedTimelineEvent===id;
-  return `<article class="agenda-card kind-${kind}"><button class="agenda-trigger" data-mobile-event="${id}" aria-expanded="${open}" aria-controls="mobile-detail-${id}"><span class="agenda-date">${date(e[0])}${e[0]!==e[1]?`<small>至 ${date(e[1])}</small>`:''}</span><span class="agenda-title"><small>${names[kind]}</small><strong>${e[3]}</strong></span><span class="agenda-chevron" aria-hidden="true">${open?'−':'+'}</span></button><div class="agenda-detail" id="mobile-detail-${id}" ${open?'':'hidden'}>${open?renderCultureDetail(e):''}</div></article>`;
+  return `<article class="agenda-card kind-${kind}"><button class="agenda-trigger" data-mobile-event="${id}" aria-expanded="${open}" aria-controls="mobile-detail-${id}"><span class="agenda-date">${date(e[0])}${e[0]!==e[1]?`<small>至 ${date(e[1])}</small>`:''}</span><span class="agenda-title"><small>${names[kind]}</small><strong>${calendarIcon(e)}${calendarTitle(e)}</strong></span><span class="agenda-chevron" aria-hidden="true">${open?'−':'+'}</span></button><div class="agenda-detail" id="mobile-detail-${id}" ${open?'':'hidden'}>${open?renderCultureDetail(e):''}</div></article>`;
  }).join('')}</section>`).join('')||'<p class="muted">这段时间没有已提供的安排。</p>';
 }
 function bindMobileAgenda(){
