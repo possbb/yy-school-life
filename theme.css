@@ -40,8 +40,8 @@ a:focus-visible,button:focus-visible,summary:focus-visible,.timeline-controls bu
 .timeline-event{border-radius:6px;font-family:inherit}
 .timeline-event.lane-0{background:var(--official)}.timeline-event.lane-1{background:var(--school-break)}
 .timeline-event.lane-2{background:var(--school-activity)}.timeline-event.lane-3{background:var(--local)}
-.event-label{background:#fffefb;border:1px solid #e8e2d6;border-radius:10px;padding:6px 8px;color:#303744;font-family:inherit;font-size:14px;line-height:1.4;box-shadow:0 3px 7px #5f553b09}
-.event-label small{font-size:12px;color:#6a7080;margin-top:4px}
+.event-label{width:176px;background:#fffefb;border:1px solid #e8e2d6;border-radius:10px;padding:9px 10px;color:#303744;font-family:inherit;font-size:14px;line-height:1.45;box-shadow:0 3px 7px #5f553b09}
+.event-label small{font-size:12px;color:#6a7080;margin-top:6px}
 .timeline-event:hover .event-label{border-color:#8e9bb3;box-shadow:0 4px 10px #4b63391a}
 .timeline-event:focus-visible .event-label{outline:3px solid #ab8336}
 .calendar-icon{float:right;width:24px;height:24px;margin:0 0 2px 4px;pointer-events:none}
