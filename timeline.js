@@ -47,6 +47,8 @@ const schoolActivities=[
 for(const [from,to,title,description] of schoolActivities){
  timelineEvents.push([from,to,6,title,description+' 图片未标年份，按2026–2027学年整理；具体时间及费用未提供。',null,['assets/school-cultural-activities.jpg','学校外出与文化活动安排原图']]);
 }
+// Date supplied by the family; no school notice or detailed timetable provided.
+timelineEvents.push(['2026-10-20','2026-10-20',6,'秋季定向越野','Carrera de orientación de otoño；10月20日秋季定向越野。具体时间、地点及装备要求待补充。',null]);
 // Recurring local celebrations: dates are traditions, not confirmed event programmes.
 const cityTraditions='https://www.meet.barcelona/ca/esdeveniments-principals';
 const autumnTraditions='https://www.barcelona.cat/barcelonacultura/ca/castanyada-festa-familiar-popular-activitats-joc-castanyes-moniatos-panellets-diversio-tradicio-teatre';

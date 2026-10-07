@@ -128,7 +128,7 @@ function cultureIllustration(kind){
 }
 function renderCultureDetail(e){
  const g=cultureGuideFor(e);
- const source=e[6]?`<a href="${e[6][0]}" target="_blank" rel="noopener">${e[6][1]}</a>`:`学校入学说明，原件第${e[5]}页`;
+ const source=e[6]?`<a href="${e[6][0]}" target="_blank" rel="noopener">${e[6][1]}</a>`:e[5]==null?'家长补充':`学校入学说明，原件第${e[5]}页`;
  const heading=`<h3>${e[3]}</h3><p class="culture-date">${e[0]===e[1]?e[0]:e[0]+' 至 '+e[1]}</p>`;
  if(!g)return `${heading}<p>${e[4]}</p><small>安排来源：${source}</small>`;
  const sections=[['由来与故事','Origen e historia',g.origin],['当地怎样过','Costumbres',g.customs],['常见食物','Qué se come',g.food],['亲子参与建议','Ideas en familia',g.family]];
