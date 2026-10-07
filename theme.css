@@ -66,3 +66,29 @@ footer{border-color:var(--line)}
  .publication-cover{background:#f1efe6}
 }
 @media(prefers-reduced-motion:reduce){.publication-card{transition:none}}
+/* Mobile month paging: the desktop timeline and range controls stay unchanged. */
+@media(max-width:760px){
+ .annual .timeline-controls,.annual .desktop-range-copy{display:none}
+ .month-pager{display:grid;grid-template-columns:48px 1fr 48px;align-items:center;background:var(--navy);color:#fffdf8;border-radius:11px;text-align:center;margin:12px 0 6px}
+ .month-pager button{height:46px;font:28px/1 system-ui;border:0;background:transparent;color:inherit;cursor:pointer;border-radius:10px}
+ .month-pager button:disabled{opacity:.3;cursor:default}.month-pager strong{font-size:17px}
+ .month-hint{font-size:11px;text-align:center;color:var(--muted);margin:8px 0 14px}
+ .month-swipe{touch-action:pan-y}.month-ruler{height:32px;margin:0 9px;position:relative;color:var(--muted);font-size:11px}
+ .month-ruler span{position:absolute;transform:translateX(-50%)}.month-ruler span::after{content:'';display:block;width:1px;height:6px;background:#c0c6d0;margin:4px auto 0}
+ .month-lane{border:1px solid var(--line);border-radius:11px;overflow:hidden;margin-bottom:12px;background:#fbf9f3}
+ .month-lane-heading{padding:9px 8px;background:#fffdf9}.month-lane-heading h3{font-size:15px;margin:0 0 3px}.month-lane-heading>span{font-size:10px;display:block}
+ .month-track{position:relative}.month-event{position:absolute;width:100%;left:0;--event-color:var(--official)}
+ .month-event.kind-1{--event-color:var(--school-break)}.month-event.kind-2{--event-color:var(--school-activity)}.month-event.kind-3{--event-color:var(--local)}
+ .month-marker{position:absolute;top:0;width:8px;height:8px;background:var(--event-color);border-radius:50%}
+ .month-marker::after{content:'';position:absolute;top:8px;left:3px;width:1px;height:7px;background:var(--event-color)}
+ .month-duration{position:absolute;top:1px;height:5px;border-radius:3px;background:var(--event-color)}
+ .month-duration i{position:absolute;top:-8px;font-size:18px;line-height:18px;font-style:normal;color:var(--event-color)}.continues-before{left:-6px}.continues-after{right:-6px}
+ .month-event button{position:absolute;top:15px;min-height:48px;padding:8px 9px;border:1px solid #e8e2d6;border-radius:10px;background:#fffefb;color:var(--ink);text-align:left;font:inherit;box-shadow:0 2px 6px #5f553b09;cursor:pointer}
+ .month-event strong{display:block;font-size:13px;line-height:1.5}.month-event small{display:block;font-size:11px;color:var(--muted);margin-top:3px}.month-event .calendar-icon{width:20px;height:20px}
+ .month-event .month-continuation{font-size:10px;color:#6f7780}.month-empty{margin:0;padding:18px 10px;color:var(--muted);font-size:12px}
+ .month-footer{text-align:center}.month-footer button{min-height:44px;padding:9px 22px;border:1px solid var(--line);border-radius:10px;background:#fffdf9;color:var(--navy);font:inherit;cursor:pointer}
+ .month-detail-dialog{width:calc(100% - 24px);max-width:550px;max-height:85dvh;padding:0;border:1px solid var(--line);border-radius:14px;background:var(--paper);color:var(--ink);overflow:auto}
+ .month-detail-dialog::backdrop{background:#23334d75}.month-detail-toolbar{position:sticky;top:0;z-index:1;display:flex;justify-content:flex-end;background:var(--paper);border-bottom:1px solid var(--line);padding:5px 9px}
+ .month-detail-toolbar button{min-height:44px;padding:8px 12px;border:0;background:transparent;color:var(--navy);font:inherit;cursor:pointer}
+ .month-detail-body{padding:14px;overflow-wrap:anywhere}.month-detail-body .culture-hero{grid-template-columns:1fr}.month-detail-body .culture-art{max-width:170px;margin:auto}
+}
