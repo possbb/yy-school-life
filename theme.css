@@ -54,6 +54,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,.timeline-controls bu
 .culture-guide h4{color:#2d3e60}.culture-art>rect{fill:#f6f1e6}
 footer{border-color:var(--line)}
 @media(max-width:760px){
+ .annual .timeline-controls{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.annual .timeline-controls button{padding:9px 5px}
  nav a{background:#f0f1f4}.mobile-shortcuts a{background:#fffdf9;border-color:var(--line);border-radius:10px}
  #mobile-school-day .lunch-period{background:#f4f3ed}.agenda-month>h3{color:#2d3e60}
  .agenda-card{background:#fffdf9;border-color:var(--line);border-left-color:var(--event-color);border-radius:12px;box-shadow:0 2px 5px #5a603407}
