@@ -92,3 +92,7 @@ footer{border-color:var(--line)}
  .month-detail-toolbar button{min-height:44px;padding:8px 12px;border:0;background:transparent;color:var(--navy);font:inherit;cursor:pointer}
  .month-detail-body{padding:14px;overflow-wrap:anywhere}.month-detail-body .culture-hero{grid-template-columns:1fr}.month-detail-body .culture-art{max-width:170px;margin:auto}
 }
+
+/* Family gallery shortcut in the shared top navigation. */
+nav .gallery-link{border:1px solid #d5dbe5;background:#f0f2f7;color:var(--navy);white-space:nowrap}
+@media(max-width:760px){nav{grid-template-columns:1fr 1.2fr .9fr}nav a{font-size:12px;padding:11px 3px}nav .gallery-link{display:flex;align-items:center;justify-content:center}}
