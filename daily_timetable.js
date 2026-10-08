@@ -12,5 +12,6 @@ function dailyTimetable(){
   }).join('');
   return `<tr>${time}<th scope="row">${row[0]}</th>${cells}</tr>`;
  }).join('');
- return `<p class="muted">7:30起早到托管 · 8:30–8:45入班 · 16:45课程结束</p><p class="week-hint">手机上可左右滑动查看完整课表。</p><div class="week-scroll" tabindex="0" role="region" aria-label="一年级周课表与作息时间"><table class="week-table daily-week-table"><colgroup><col class="time-column"><col class="order-column"><col span="5"></colgroup><thead><tr><th scope="col">时间区间</th><th scope="col">课程顺序</th>${headings}</tr></thead><tbody>${rows}</tbody></table></div>`;
+ const craftRow=`<tr class="week-personal"><th scope="row" class="day-time">16:45–17:45<small>课外活动</small></th><th scope="row">手工课<small>2026年11月1日起</small></th>${[0,1,2,3,4].map(d=>[0,2].includes(d)?'<td class="purple"><strong>手工课</strong><small lang="es">Artes y manualidades</small></td>':'<td>—</td>').join('')}</tr>`;
+ return `<p class="muted">7:30起早到托管 · 8:30–8:45入班 · 16:45课程结束</p><p class="week-hint">手机上可左右滑动查看完整课表。</p><div class="week-scroll" tabindex="0" role="region" aria-label="一年级周课表与作息时间"><table class="week-table daily-week-table"><colgroup><col class="time-column"><col class="order-column"><col span="5"></colgroup><thead><tr><th scope="col">时间区间</th><th scope="col">课程顺序</th>${headings}</tr></thead><tbody>${rows}${craftRow}</tbody></table></div>`;
 }
