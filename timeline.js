@@ -49,6 +49,8 @@ for(const [from,to,title,description] of schoolActivities){
 }
 // Date supplied by the family; no school notice or detailed timetable provided.
 timelineEvents.push(['2026-10-20','2026-10-20',6,'秋季定向越野','Carrera de orientación de otoño；10月20日秋季定向越野。具体时间、地点及装备要求待补充。',null]);
+// AFA cultural outing, transcribed from the family-provided notice; year confirmed by the user.
+timelineEvents.push(['2026-11-08','2026-11-08',6,'胡桃夹子爵士音乐会 · 11:00','活动：TRENCANOUS-JAZZ（胡桃夹子爵士音乐会）。由 La Salle Bonanova 家长协会（AFA）文化委员会组织的文化外出活动，需自行报名，不代表已报名。<br><br>时间：2026年11月8日（周日）11:00；结束时间未说明。地点：利塞乌大剧院主厅（Sala Gran del Liceu）。适合6岁及以上儿童。<br><br>费用：每人15.50欧元（通知列明的优惠后价格）。名额共25个，按报名顺序分配，不接受退款。<br><br>报名截止：2026年10月19日（周一）。通过银行转账报名；转账备注需填写学生姓名、班级、学段及参加人数。收款账户请查看原通知。',null]);
 // Recurring local celebrations: dates are traditions, not confirmed event programmes.
 const cityTraditions='https://www.meet.barcelona/ca/esdeveniments-principals';
 const autumnTraditions='https://www.barcelona.cat/barcelonacultura/ca/castanyada-festa-familiar-popular-activitats-joc-castanyes-moniatos-panellets-diversio-tradicio-teatre';
