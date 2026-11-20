@@ -19,6 +19,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden)syncSchool
 const intro=(title,es,desc)=>`<div class="intro"><div><div class="eyebrow">${es}</div><h1>${title}</h1><p class="muted">${desc}</p></div><span class="label">家庭资料 · 本地版</span></div>`;
 function dayButtons(){return `<div class="days" role="group" aria-label="选择星期">${dayNames.map((n,i)=>`<button type="button" data-day="${i}" aria-pressed="${selected===i}">${n}<small lang="es">${dayEs[i]}</small></button>`).join('')}</div>`}
 function plannedCraftLesson(){
+ if([1,3].includes(selected))return '<div class="lesson-period planned-craft"><div class="period-time"><strong>16:45–17:45</strong><small>课外活动</small></div><div class="lesson green"><strong>手球课</strong><small lang="es">Balonmano</small><small>2027年1月1日起 · 每周二、周四</small></div></div>';
  if(![0,2].includes(selected))return '';
  return '<div class="lesson-period planned-craft"><div class="period-time"><strong>16:45–17:45</strong><small>课外活动</small></div><div class="lesson purple"><strong>手工课</strong><small lang="es">Artes y manualidades</small><small>2026年11月1日起 · 每周一、周三</small></div></div>';
 }
